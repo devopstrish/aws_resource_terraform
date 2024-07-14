@@ -1,12 +1,22 @@
 pipeline {
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+    }
+
     agent any
 
     environment {
         // Define any necessary environment variables here
         // For example, AWS credentials if using AWS
-        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_ACCESS_KEY_ID = credentials('aws-terraform-user')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-terraform-user')
     }
+
+    tools {
+        	terraform 'terraform'
+    	      }
+
 
     stages {
         stage('Checkout') {
