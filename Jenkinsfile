@@ -4,8 +4,8 @@ pipeline {
     environment {
         // Define any necessary environment variables here
         // For example, AWS credentials if using AWS
-        AWS_ACCESS_KEY_ID = credentials('aws-terraform-user')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-terraform-user')
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     }
 
     stages {
@@ -15,7 +15,7 @@ pipeline {
                 checkout scm
             }
         }
-    }
+
         stage('Terraform Init') {
             steps {
                 // Initialize Terraform
